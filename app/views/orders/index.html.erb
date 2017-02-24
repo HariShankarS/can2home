@@ -3,35 +3,33 @@
   <div class="row row-fluid">
     <% @orders.each do |order| %>
       <div class="col-md-4">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <div class="icons-set clearfix">
-              <div class="pull-left">
-                <h3 class="panel-title"><%= order.water_brand.upcase %></h3>
-              </div>
+        <div class="card">
+          <div class="card-height-indicator"></div>
+          <div class="card-content">
+            <div class="card-body">
               <div class="pull-right qty" >
                 <%= "#{order.cans} #{"Can".pluralize(order.cans.to_i)}" %>
               </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            <p><%= order.address %></p>
-            <p><h6><%= order.created_at.strftime("%d %b %Y %l:%M %p") %></h6></p>
-          </div>
-          <div class="panel-footer">
-            <div class="icons-set clearfix">
-              <div class="pull-left">
-              </div>
-              <div class="pull-right">
-                <%= link_to edit_order_path(order) do %>
-                  <i class="material-icons">mode_edit</i> 
-                <% end %>
-                <%= link_to order_path(order) do %>
-                  <i class="material-icons">info_outline</i> 
-                <% end %>
-                <%= link_to order_path(order), "data-confirm" => "Are you Sure?", :method => :delete do %>
-                  <i class="material-icons">delete</i>
-                <% end %>
+              <h5><%= order.water_brand.upcase %></h5>
+              <p class="clever">
+                <%= order.address %><br>
+                <%= order.created_at.strftime("%d %b %Y %l:%M %p") %><br>
+              </p>
+              <div class="icons-set clearfix">
+                <div class="pull-left">
+                  <span class="label label-<%= class_for[order.state.to_sym] %>"><%= order.state.upcase %></span>
+                </div>
+                <div class="pull-right">
+                  <%= link_to edit_order_path(order) do %>
+                    <i class="material-icons">mode_edit</i> 
+                  <% end %>
+                  <%= link_to order_path(order) do %>
+                    <i class="material-icons">info_outline</i> 
+                  <% end %>
+                  <%= link_to order_path(order), "data-confirm" => "Are you Sure?", :method => :delete do %>
+                    <i class="material-icons">delete</i>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

@@ -30,3 +30,20 @@ i {
   font-style: italic;
   font-weight: bold;
 }
+ .orders .card {
+   margin-bottom: 20px;
+ }
+ .orders .card .card-height-indicator {
+   margin-top: 200px;
+ }
+ .orders .card-body a, .orders .card-body a:active, .orders .card-body a:hover {
+   text-decoration: none;
+ }
+ .orders .clever {
+   overflow-y: auto;
+   overflow-x: auto;
+   width: 100%;
+   word-wrap: break-word;
+   padding-top: 30px;
+   padding-bottom: 30px;
+ }

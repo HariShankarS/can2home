@@ -14,6 +14,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'aasm'
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
 # gem 'activeadmin', github: 'activeadmin'
 # gem 'inherited_resources', github: 'activeadmin/inherited_resources'
