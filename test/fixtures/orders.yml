@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cans: 1
+  address: MyString
+  water_brand: MyString
+
+two:
+  cans: 1
+  address: MyString
+  water_brand: MyString
