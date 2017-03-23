@@ -7,9 +7,9 @@
 
 <p>
   <strong>Address:</strong>
-  <%= @order.address %>
-</p>
-
+    <a href="http://maps.google.com/?q=<%=@order.address%>">Map</a>
+	<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%=
+	@order.address%>&amp;key=AIzaSyC5671bsT9wY3wOXlcG89u4IOjyrY9IC3Y"></iframe>
 <p>
   <strong>Water brand:</strong>
   <%= @order.water_brand %>

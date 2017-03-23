@@ -26,96 +26,70 @@
     <%= f.text_field :address, :class => "form-control", :id => "lnl" %>
   </div>
 
-    <!DOCTYPE html >
-    <head>
-      <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-      <title>Test</title>
-      <style>
-        #map {
-          height: 400px;
-          width: 400px;
-          margin: auto;
-        }
-        html, body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-      </style>
-    </head>
-    <body>
-      <div id="map" ></div>
-      <div id="message"  style="display:none">Location saved</div>
-      <script>
-        var map;
-        var marker;
-        var infowindow;
-        var messagewindow;
-
-        function initMap() {
-          var defaultLocation = {lat: 13.016147, lng: 77.642913};
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: defaultLocation,
-            zoom: 15
-          });
-
-          infowindow = new google.maps.InfoWindow({
-            content: "<table>" +
-                       "<tbody>" +
-                         "<tr><td>Mobile:</td><td><input id='mobile' type='text'></td></tr>" +
-                         "<tr><td>Address:</td><td><input id='address' type='text'></td></tr>" +
-                         "<tr><td></td><td><input value='Order' onclick='placeOrder()' type='button'></td></tr>" +
-                       "</tbody>" +
-                     "</table>"
-          })
-
-          messagewindow = new google.maps.InfoWindow({
-            content: document.getElementById('message')
-          });
-
-          google.maps.event.addListener(map, 'click', function(event) {
-            if(marker === undefined){
-              marker = new google.maps.Marker({
-                position: event.latLng,
-                map: map,
-                draggable: true,
-                animation: google.maps.Animation.DROP
-              });
-
-              google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker);
-              });
-            }
-            else{
-              marker.setPosition(event.latLng)
-            }
-            infowindow.open(map, marker);
-          });
-        }
-
-        function placeOrder() {
-          var mobile = escape(document.getElementById('mobile').value);
-          var address = escape(document.getElementById('address').value);
-          var latlng = marker.getPosition();
-          var url = '/order/new?mobile=' + mobile + '&address=' + address +
-                    '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
-
-          var lnl = latlng.lat() + ',' + latlng.lng();
-          $("#lnl").attr("value",lnl)
-          console.log(url);
-        }
-
-
-      </script>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYXYG52r_tAtWodZevknt36fti0XgqbpY&callback=initMap">
-      </script>
-    </body>
-  </html>
+  <div id="map" ></div>
+  <div id="message"  style="display:none">Location saved</div>
 
   <div class="actions">
     <%= f.submit :class => "btn btn-raised btn-info" %>
   </div>
 </div>
 <% end %>
+<script>
+  var map;
+  var marker;
+  var infowindow;
+  var messagewindow;
+
+  function initMap() {
+    var defaultLocation = {lat: 13.016147, lng: 77.642913};
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: defaultLocation,
+      zoom: 15
+    });
+
+    infowindow = new google.maps.InfoWindow({
+      content: "<table>" +
+                 "<tbody>" +
+                   "<tr><td>Mobile:</td><td><input id='mobile' type='text'></td></tr>" +
+                   "<tr><td>Address:</td><td><input id='address' type='text'></td></tr>" +
+                   "<tr><td></td><td><input value='Order' onclick='placeOrder()' type='button'></td></tr>" +
+                 "</tbody>" +
+               "</table>"
+    })
+
+    messagewindow = new google.maps.InfoWindow({
+      content: document.getElementById('message')
+    });
+
+    google.maps.event.addListener(map, 'click', function(event) {
+      if(marker === undefined){
+        marker = new google.maps.Marker({
+          position: event.latLng,
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+      else{
+        marker.setPosition(event.latLng)
+      }
+      infowindow.open(map, marker);
+    });
+  }
+
+  function placeOrder() {
+    var mobile = escape(document.getElementById('mobile').value);
+    var address = escape(document.getElementById('address').value);
+    var latlng = marker.getPosition();
+    var url = '/order/new?mobile=' + mobile + '&address=' + address +
+              '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
+
+    var lnl = latlng.lat() + ',' + latlng.lng();
+    $("#lnl").attr("value",lnl)
+    console.log(url);
+  }
+</script>
